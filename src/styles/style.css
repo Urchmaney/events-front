@@ -1,0 +1,36 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.indicator{
+  position: absolute;
+  top: 0;
+  left: -5px;
+  border: 2px solid red;
+  height: 10px;
+  width: 10px;
+  border-radius: 5px;
+}
+
+.container{
+  position: relative;
+  border-left: 1px solid gray;
+  margin-left: 10px;
+  height: 100px;
+}
+
+.event{
+  position: relative;
+  padding-left: 20px;
+  
+}
+.info-container{
+  display: flex;
+}
+
+.interested{
+ 
+  transform: rotate(90deg);
+}
