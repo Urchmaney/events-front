@@ -1,14 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Event from './components/event';
+import App from './components/app';
 import './index.css';
-import './styles/style.css';
 
 ReactDOM.render(
-  <div className="container">
-    <Event />
-    <Event />
-  </div>, document.getElementById('root'),
+  <App />, document.getElementById('root'),
 );
 
 // If you want your app to work offline and load faster, you can change

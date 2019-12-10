@@ -7,7 +7,7 @@ const Event = (props) => {
   return (
     <div className="event">
       <Indicator />
-      <p>9.00 to 10</p>
+      <p className="time-text">9.00 to 10</p>
       <div className="info-container">
         <div>
           <h2>
@@ -19,7 +19,7 @@ const Event = (props) => {
           </p>
         </div>
         <span className="interested">
-        Interested
+          Interested
         </span>
       </div>
     </div>
