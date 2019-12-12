@@ -1,10 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 import App from './components/app';
+import rootReducer from './reducers/index';
 import './index.css';
 
+const store = createStore(rootReducer, { auth: 'OUT' });
 ReactDOM.render(
-  <App />, document.getElementById('root'),
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root'),
 );
 
 // If you want your app to work offline and load faster, you can change
