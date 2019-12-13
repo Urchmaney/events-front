@@ -6,7 +6,7 @@ import App from './components/app';
 import rootReducer from './reducers/index';
 import './index.css';
 
-const store = createStore(rootReducer, { auth: 'OUT' });
+const store = createStore(rootReducer, { loggedIn: false });
 ReactDOM.render(
   <Provider store={store}>
     <App />

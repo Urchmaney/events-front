@@ -1,14 +1,16 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { post } from '../services/call';
 import { registerUrl } from '../constants';
-import { login } from '../actions/index';
+import { login, addToken } from '../actions/index';
 
 class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      errors: [],
       email: '',
       username: '',
       names: '',
@@ -17,17 +19,33 @@ class Register extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.onSuccessRegistration = this.onSuccessRegistration.bind(this);
+    this.onErrorRegistration = this.onErrorRegistration.bind(this);
   }
 
   onSuccessRegistration(token) {
-    const { login } = this.props;
-    login(token);
-    console.log(this.props);
+    const { login, addToken, history } = this.props;
+    login();
+    addToken(token);
+    this.resetState();
+    history.push('/');
   }
 
-  onErrorRegistration() {
-    console.log('error');
-    console.log('another')
+  onErrorRegistration(errors) {
+    this.setState((state) => ({
+      ...state, errors,
+    }));
+  }
+
+  resetState() {
+    this.setState({
+      errors: [],
+      email: '',
+      username: '',
+      names: '',
+      password: '',
+      password_confirmation: '',
+    });
   }
 
   handleSubmit() {
@@ -43,8 +61,12 @@ class Register extends React.Component {
 
   render() {
     const { handleChange, handleSubmit } = this;
+    const { errors } = this.state;
     return (
       <div>
+        <ul>
+          {errors.map((error) => (<li key={error}>{error}</li>))}
+        </ul>
         <input placeholder="Your Email" name="email" type="text" onChange={handleChange} />
         <br />
         <input placeholder="Username" name="username" type="text" onChange={handleChange} />
@@ -62,7 +84,8 @@ class Register extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  login: (token) => dispatch(login(token)),
+  login: () => dispatch(login()),
+  addToken: (token) => dispatch(addToken(token)),
 });
 
 const mapStateToProps = (state) => ({
@@ -71,6 +94,8 @@ const mapStateToProps = (state) => ({
 
 Register.propTypes = {
   login: PropTypes.func.isRequired,
+  addToken: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);

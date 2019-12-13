@@ -2,7 +2,7 @@ import React from 'react';
 import Event from './event';
 import '../styles/style.css';
 
-const BookList = () => (
+const EventList = () => (
   <div className="event-list">
     <Event />
     <Event />
@@ -10,4 +10,4 @@ const BookList = () => (
   </div>
 );
 
-export default BookList;
+export default EventList;

@@ -1,14 +1,14 @@
 import { LOGIN, LOGOUT } from '../constants';
 
-const auth = (state = 'OUT', action) => {
+const loggedIn = (state = false, action) => {
   switch (action.type) {
     case LOGIN:
-      return action.token;
+      return true;
     case LOGOUT:
-      return 'OUT';
+      return false;
     default:
       return state;
   }
 };
 
-export default auth;
+export default loggedIn;

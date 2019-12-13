@@ -1,9 +1,8 @@
-import { LOGIN, LOGOUT } from '../constants';
+import { LOGIN, LOGOUT, ADD_TOKEN } from '../constants';
 
-const login = (token) => (
+const login = () => (
   {
     type: LOGIN,
-    token,
   }
 );
 
@@ -11,4 +10,8 @@ const logout = () => (
   { type: LOGOUT }
 );
 
-export { login, logout };
+const addToken = (token) => (
+  { type: ADD_TOKEN, token }
+);
+
+export { login, logout, addToken };

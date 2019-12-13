@@ -1,10 +1,7 @@
 const sucessOrError = (result, onSuccess, onError) => {
-  console.log(result);
   if (result.error) {
-    console.log('error here');
-    onError();
+    onError(result.error);
   } else {
-    console.log('sucess here');
     onSuccess(result.token);
   }
 };
@@ -17,7 +14,7 @@ const get = (url, onSuccess, onError) => {
 };
 
 const post = (url, payload, onSuccess, onError) => {
-  fetch(url,
+  return fetch(url,
     {
       method: 'POST',
       headers: {
@@ -27,7 +24,9 @@ const post = (url, payload, onSuccess, onError) => {
     }).then((result) => result.json())
     .then((result) => {
       sucessOrError(result, onSuccess, onError);
-    }).catch(() => {});
+    }).catch((e) => {
+      onError();
+    });
 };
 
 export { get, post };
