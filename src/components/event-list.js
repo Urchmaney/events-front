@@ -1,6 +1,6 @@
 import React from 'react';
 import Event from './event';
-import '../styles/style.css';
+import '../styles/style.scss';
 
 const EventList = () => (
   <div className="event-list">

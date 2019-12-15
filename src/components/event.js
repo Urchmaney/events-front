@@ -1,6 +1,6 @@
 import React from 'react';
 import Indicator from './indicator';
-import '../styles/style.css';
+import '../styles/style.scss';
 
 const Event = (props) => {
   const { location } = props;

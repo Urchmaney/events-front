@@ -7,7 +7,8 @@ import {
 import Home from './home';
 import Register from './register';
 import Login from './login';
-import '../styles/style.css';
+import '../fontawesome';
+import '../styles/style.scss';
 
 const App = () => (
   <Router>
