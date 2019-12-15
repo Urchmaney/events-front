@@ -63,21 +63,36 @@ class Register extends React.Component {
     const { handleChange, handleSubmit } = this;
     const { errors } = this.state;
     return (
-      <div>
-        <ul>
-          {errors.map((error) => (<li key={error}>{error}</li>))}
-        </ul>
-        <input placeholder="Your Email" name="email" type="text" onChange={handleChange} />
-        <br />
-        <input placeholder="Username" name="username" type="text" onChange={handleChange} />
-        <br />
-        <input placeholder="First and Last Name" name="names" type="text" onChange={handleChange} />
-        <br />
-        <input placeholder="Password" name="password" type="password" onChange={handleChange} />
-        <br />
-        <input placeholder="confirm Password" name="password_confirmation" type="password" onChange={handleChange} />
-        <br />
-        <button type="button" onClick={handleSubmit}> Submit </button>
+      <div className="auth">
+        <div className="auth-image" />
+        <div className="auth-form-container">
+          <h3 className="auth-header">Sign Up</h3>
+          <ul>
+            {errors.map((error) => (<li key={error}>{error}</li>))}
+          </ul>
+          <div className="input-container">
+            <input name="email" type="text" onChange={handleChange} required />
+            <span>Email</span>
+          </div>
+          <div className="input-container">
+            <input name="username" type="text" onChange={handleChange} required />
+            <span>Username</span>
+          </div>
+          <div className="input-container">
+            <input name="names" type="text" onChange={handleChange} required />
+            <span>First and Last Name</span>
+          </div>
+          <div className="input-container">
+            <input name="password" type="password" onChange={handleChange} required />
+            <span>Password</span>
+          </div>
+          <div className="input-container">
+            <input name="password_confirmation" type="password" onChange={handleChange} required />
+            <span>confirm Password</span>
+          </div>
+          <button type="button" onClick={handleSubmit}> Sign Up </button>
+        </div>
+        <a href="/register"> Login </a>
       </div>
     );
   }

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { login, addToken } from '../actions/index';
 import { loginUrl } from '../constants';
 import { post } from '../services/call';
-import image from '../event-img.png';
+import '../styles/style.scss';
 
 class Login extends React.Component {
   constructor(props) {
@@ -59,18 +59,24 @@ class Login extends React.Component {
     const { handleChange, handleSubmit } = this;
     const { errors } = this.state;
     return (
-      <div>
-        <div>
-          <img alt="" src={image} />
+      <div className="auth">
+        <div className="auth-image" />
+        <div className="auth-form-container">
+          <h3 className="auth-header">Sign in</h3>
+          <ul>
+            {errors.map((error) => (<li key={error}>{error}</li>))}
+          </ul>
+          <div className="input-container">
+            <input name="email" type="text" onChange={handleChange} required />
+            <span>Email</span>
+          </div>
+          <div className="input-container">
+            <input name="password" type="password" onChange={handleChange} required />
+            <span>Password</span>
+          </div>
+          <button type="button" onClick={handleSubmit}> Sign In </button>
         </div>
-        <ul>
-          {errors.map((error) => (<li key={error}>{error}</li>))}
-        </ul>
-        <input placeholder="Your Email" name="email" type="text" onChange={handleChange} />
-        <br />
-        <input placeholder="Password" name="password" type="password" onChange={handleChange} />
-        <br />
-        <button type="button" onClick={handleSubmit}> Submit </button>
+        <a href="/register"> Register</a>
       </div>
 
     );
