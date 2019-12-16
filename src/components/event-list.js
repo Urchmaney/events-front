@@ -60,12 +60,12 @@ class EventList extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   token: state.token,
 });
 
 const mapDispatchToProps = dispatch => ({
-  changeEvent: (event) => dispatch(changeEvent(event)),
+  changeEvent: event => dispatch(changeEvent(event)),
 });
 
 EventList.propTypes = {
