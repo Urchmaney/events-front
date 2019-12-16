@@ -82,9 +82,13 @@ class EventDescription extends React.Component {
         </div>
         <div>
           {
-             Object.keys(organizers).map((key) => {
-               return (<Organizers key={key} title={key} people={organizers[key]} />);
-             })
+            Object.keys(organizers).map((key) => (
+              <Organizers
+                key={key}
+                title={key}
+                people={organizers[key]}
+              />
+            ))
           }
         </div>
         <div>

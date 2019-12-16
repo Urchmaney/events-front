@@ -14,6 +14,6 @@ const post = (url, payload, token = '') => fetch(url,
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(payload),
-  }).then((result) => result.json());
+  }).then(result => result.json());
 
 export { get, post };
