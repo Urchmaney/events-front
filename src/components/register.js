@@ -32,7 +32,7 @@ class Register extends React.Component {
   }
 
   onErrorRegistration(errors) {
-    this.setState((state) => ({
+    this.setState(state => ({
       ...state, errors,
     }));
   }
@@ -63,7 +63,7 @@ class Register extends React.Component {
 
   handleChange(event) {
     const { name, value } = event.target;
-    this.setState((state) => ({
+    this.setState(state => ({
       ...state, [name]: value,
     }));
   }
@@ -77,7 +77,7 @@ class Register extends React.Component {
         <div className="auth-form-container">
           <h3 className="auth-header">Sign Up</h3>
           <ul>
-            {errors.map((error) => (<li key={error}>{error}</li>))}
+            {errors.map(error => (<li key={error}>{error}</li>))}
           </ul>
           <div className="input-container">
             <input name="email" type="text" onChange={handleChange} required />
@@ -107,12 +107,12 @@ class Register extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   login: () => dispatch(login()),
-  addToken: (token) => dispatch(addToken(token)),
+  addToken: token => dispatch(addToken(token)),
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   ...state,
 });
 

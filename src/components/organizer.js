@@ -9,7 +9,7 @@ const Organizers = (props) => {
     <div className="organizer">
       <h3 className="o-title">{title}</h3>
       <div className="o-container">
-        {people.map((person) => (<User key={person} name={person.name} role={person.role} />))}
+        {people.map(person => (<User key={person} name={person.name} role={person.role} />))}
       </div>
     </div>
   );

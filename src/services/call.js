@@ -4,7 +4,7 @@ const get = (url, token) => fetch(url,
     headers: {
       Authorization: `Bearer ${token}`,
     },
-  }).then((result) => result.json());
+  }).then(result => result.json());
 
 const post = (url, payload, token = '') => fetch(url,
   {

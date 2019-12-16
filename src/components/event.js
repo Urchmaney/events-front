@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Indicator from './indicator';
 import '../styles/style.scss';
 
@@ -25,6 +26,10 @@ const Event = (props) => {
     </div>
 
   );
+};
+
+Event.propTypes = {
+  location: PropTypes.string.isRequired,
 };
 
 export default Event;

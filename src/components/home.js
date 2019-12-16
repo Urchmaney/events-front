@@ -15,9 +15,9 @@ import objectIsEmpty from '../services/objectCheck';
 import { changeEvent } from '../actions/index';
 import '../styles/style.scss';
 
-const getDayDiff = (milliSec) => milliSec / daysInMillSec;
-const getHourDiff = (milliSec) => milliSec / hoursInMilliSec;
-const getMinutesDiff = (milliSec) => milliSec / minutesInMilliSec;
+const getDayDiff = milliSec => milliSec / daysInMillSec;
+const getHourDiff = milliSec => milliSec / hoursInMilliSec;
+const getMinutesDiff = milliSec => milliSec / minutesInMilliSec;
 const getDateDiffComponents = (date) => {
   if (date) {
     const diff = date - new Date();
@@ -104,13 +104,13 @@ class Home extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   isLoggedIn: state.loggedIn,
   token: state.token,
   event: state.event,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   setEvent: (event) => { dispatch(changeEvent(event)); },
 });
 

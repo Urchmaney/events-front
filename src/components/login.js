@@ -30,14 +30,14 @@ class Login extends React.Component {
   }
 
   onErrorLogin(errors) {
-    this.setState((state) => ({
+    this.setState(state => ({
       ...state, errors: [errors],
     }));
   }
 
   handleChange(event) {
     const { name, value } = event.target;
-    this.setState((state) => ({
+    this.setState(state => ({
       ...state, [name]: value,
     }));
   }
@@ -72,7 +72,7 @@ class Login extends React.Component {
         <div className="auth-form-container">
           <h3 className="auth-header">Sign in</h3>
           <ul>
-            {errors.map((error) => (<li key={error}>{error}</li>))}
+            {errors.map(error => (<li key={error}>{error}</li>))}
           </ul>
           <div className="input-container">
             <input name="email" type="text" onChange={handleChange} required />
@@ -91,9 +91,9 @@ class Login extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   login: () => dispatch(login()),
-  addToken: (token) => dispatch(addToken(token)),
+  addToken: token => dispatch(addToken(token)),
 });
 
 Login.propTypes = {

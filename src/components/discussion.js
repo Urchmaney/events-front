@@ -49,7 +49,7 @@ class Discussion extends React.Component {
 
   HandleOnChange(event) {
     const { value } = event.target;
-    this.setState((state) => ({
+    this.setState(state => ({
       ...state, comment: value,
     }));
   }
@@ -80,7 +80,7 @@ class Discussion extends React.Component {
         </div>
         <div className="comments-container">
           {
-            comments.map((comment) => (
+            comments.map(comment => (
               <Comment
                 key={comment}
                 name={`${comment.user.firstname} ${comment.user.lastname}`}
@@ -100,7 +100,7 @@ class Discussion extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   event: state.event,
   token: state.token,
 });
