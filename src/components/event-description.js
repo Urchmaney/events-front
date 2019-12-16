@@ -3,16 +3,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { get } from '../services/call';
+import { get, post } from '../services/call';
 import Header from './header';
 import Organizers from './organizer';
-import { organizersUrl } from '../constants';
+import { organizersUrl, myEventUrl } from '../constants';
+
+const isEventPresent = (events, event) => events.some(e => e.id === event.id);
+
 
 class EventDescription extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { organizers: {} };
+    this.state = { organizers: {}, events: [] };
     this.returnHome = this.returnHome.bind(this);
+    this.handleAddEvent = this.handleAddEvent.bind(this);
   }
 
   componentDidMount() {
@@ -20,7 +24,13 @@ class EventDescription extends React.Component {
     const getResult = get(organizersUrl(event.id), token);
     getResult.then((result) => {
       if (!result.error) {
-        this.setState({ organizers: result });
+        this.setState({ organizers: result, events: [] });
+      }
+    });
+    const getResulte = get(myEventUrl, token);
+    getResulte.then((result) => {
+      if (!result.error) {
+        this.setState(state => ({ organizers: state.organizers, events: result }));
       }
     });
   }
@@ -30,10 +40,40 @@ class EventDescription extends React.Component {
     history.push('/');
   }
 
+  handleAddEvent() {
+    const { event, token } = this.props;
+    const postResult = post(myEventUrl, { id: event.id }, token);
+    postResult.then((result) => {
+      if (!result.error) {
+        this.setState(state => ({ organizers: state.organizers, events: result }));
+      }
+    });
+  }
+
   render() {
-    const { organizers } = this.state;
+    const { organizers, events } = this.state;
     const { history, event } = this.props;
-    const { returnHome } = this;
+    const { returnHome, handleAddEvent } = this;
+    let addComp = '';
+    if (isEventPresent(events, event)) {
+      addComp = (
+        <div className="add-schedule green-bg">
+          Own
+          <span>
+            <FontAwesomeIcon icon="check" />
+          </span>
+        </div>
+      );
+    } else {
+      addComp = (
+        <div className="add-schedule" onClick={handleAddEvent} onKeyDown={() => {}} role="presentation">
+      Add to Schedule
+          <span>
+            <FontAwesomeIcon icon="plus" />
+          </span>
+        </div>
+      );
+    }
     return (
       <div className="event-desc">
         <Header fontType="arrow-left" title="Description" onClick={returnHome} />
@@ -67,12 +107,9 @@ class EventDescription extends React.Component {
             </div>
           </div>
           <div />
-          <div className="add-schedule">
-          Add to Schedule
-            <span>
-              <FontAwesomeIcon icon="plus" />
-            </span>
-          </div>
+          {
+           addComp
+         }
         </div>
         <div className="desc-main">
           <h3 className="desc-title">Description</h3>

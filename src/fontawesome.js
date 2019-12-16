@@ -13,6 +13,7 @@ import {
   faPlus,
   faComment,
   faUser,
+  faCheck,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { faTelegramPlane } from '@fortawesome/free-brands-svg-icons';
@@ -32,4 +33,5 @@ library.add(
   faComment,
   faTelegramPlane,
   faUser,
+  faCheck,
 );

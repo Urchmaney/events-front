@@ -25,7 +25,7 @@ const HomeMenu = (props) => {
         <span><FontAwesomeIcon icon="calendar-alt" /></span>
       Description
       </p>
-      <p className="menu-row">
+      <p className="menu-row" onClick={() => { history.push('/event/attendees'); }} onKeyDown={() => {}} role="presentation">
         <span><FontAwesomeIcon icon="users" /></span>
       Attendees
       </p>
@@ -33,9 +33,9 @@ const HomeMenu = (props) => {
         <span><FontAwesomeIcon icon="users" /></span>
       Discussions
       </p>
-      <p className="menu-row">
+      <p className="menu-row" onClick={() => { history.push('/events'); }} onKeyDown={() => {}} role="presentation">
         <span><FontAwesomeIcon icon="calendar-check" /></span>
-      All Events
+       Events
       </p>
     </div>
   );

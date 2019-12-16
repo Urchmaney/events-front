@@ -8,7 +8,9 @@ import Home from './home';
 import Register from './register';
 import Login from './login';
 import EventDescription from './event-description';
+import EventList from './event-list';
 import Discussion from './discussion';
+import Attendees from './attendees';
 import '../fontawesome';
 import '../styles/style.scss';
 
@@ -18,8 +20,10 @@ const App = () => (
       <Route path="/" exact component={Home} />
       <Route path="/register" component={Register} />
       <Route path="/login" component={Login} />
+      <Route path="/events" component={EventList} />
       <Route path="/event/description" component={EventDescription} />
       <Route path="/event/discussion" component={Discussion} />
+      <Route path="/event/attendees" component={Attendees} />
     </Switch>
   </Router>
 );

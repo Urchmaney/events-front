@@ -4,18 +4,18 @@ import Indicator from './indicator';
 import '../styles/style.scss';
 
 const Event = (props) => {
-  const { location } = props;
+  const { title, time, location } = props;
   return (
     <div className="event">
       <Indicator />
-      <p className="time-text">9.00 to 10</p>
+      <p className="time-text">{time}</p>
       <div className="info-container">
         <div>
           <h2>
-          Opening Spech
+            {title}
           </h2>
           <p>
-          host
+            {location}
             <span>{location}</span>
           </p>
         </div>
@@ -30,6 +30,8 @@ const Event = (props) => {
 
 Event.propTypes = {
   location: PropTypes.string.isRequired,
+  time: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default Event;

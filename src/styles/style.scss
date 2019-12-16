@@ -75,6 +75,9 @@
       cursor: pointer;
     }
   }
+  .green-bg{
+    background-color: green;
+  }
   .event-main{
     height: 220px;
     padding: 20px;
@@ -341,7 +344,7 @@
   top: 0;
   left: -5px;
   top: 2px;
-  border: 2px solid red;
+  border: 2px solid #18b3da;
   height: 10px;
   width: 10px;
   border-radius: 5px;
@@ -350,16 +353,12 @@
 .container{
   background-color: #f8f8ff;
   position: relative;
+  padding-bottom: 20px;
   .content-main{
     position: relative;
   }
 }
 
-.time-text{
-  font-size: 10px;
-  font-weight: 800;
-  color: #45c2e2;
-}
 
 .main{
   position: relative;
@@ -373,16 +372,29 @@
   position: relative;
   padding-left: 20px;
   margin-bottom: 10px;
-  
+  .time-text{
+    font-size: 10px;
+    font-weight: 800;
+    color: #45c2e2;
+  }
+  .info-container{
+    position: relative;
+    background-color: white;
+    border-radius: 4px;
+    width: 80%;
+    height: 80px;
+    margin-top: 5px;
+    padding: 10px;
+    &:hover{
+      cursor: pointer;
+    }
+    h2{
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+  }
 }
-.info-container{
-  position: relative;
-  background-color: white;
-  border-radius: 4px;
-  width: 70%;
-  height: 80px;
-  margin-top: 5px;
-}
+
 
 .interested{ 
   position: absolute;

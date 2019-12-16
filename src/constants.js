@@ -5,11 +5,13 @@ const CHANGE_EVENT = 'CHANGE_EVENT';
 const daysInMillSec = 24 * 60 * 60000;
 const hoursInMilliSec = 60 * 60000;
 const minutesInMilliSec = 60000;
+const myEventUrl = 'http://localhost:3000/api/v1/events';
 const registerUrl = 'http://localhost:3000/api/v1/register';
 const loginUrl = 'http://localhost:3000/api/v1/login';
 const allEventUrl = 'http://localhost:3000/api/v1/events/all';
 const organizersUrl = id => `http://localhost:3000/api/v1/events/${id}/organizers`;
 const commentUrl = id => `http://localhost:3000/api/v1/events/${id}/comments`;
+const attendeeUrl = id => `http://localhost:3000/api/v1/events/${id}/attendee`;
 
 export {
   LOGIN,
@@ -24,4 +26,6 @@ export {
   minutesInMilliSec,
   organizersUrl,
   commentUrl,
+  myEventUrl,
+  attendeeUrl,
 };
