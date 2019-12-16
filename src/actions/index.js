@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, ADD_TOKEN } from '../constants';
+import { LOGIN, LOGOUT, ADD_TOKEN, CHANGE_EVENT } from '../constants';
 
 const login = () => (
   {
@@ -14,4 +14,8 @@ const addToken = (token) => (
   { type: ADD_TOKEN, token }
 );
 
-export { login, logout, addToken };
+const changeEvent = (event) => (
+  { type: CHANGE_EVENT, event }
+);
+
+export { login, logout, addToken, changeEvent };

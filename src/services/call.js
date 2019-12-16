@@ -1,32 +1,19 @@
-const sucessOrError = (result, onSuccess, onError) => {
-  if (result.error) {
-    onError(result.error);
-  } else {
-    onSuccess(result.token);
-  }
-};
+const get = (url, token) => fetch(url,
+  {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((result) => result.json());
 
-const get = (url, onSuccess, onError) => {
-  fetch(url, { method: 'GET' }).then((result) => result.json())
-    .then((result) => {
-      sucessOrError(result, onSuccess, onError);
-    }).catch(() => onError());
-};
-
-const post = (url, payload, onSuccess, onError) => {
-  return fetch(url,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    }).then((result) => result.json())
-    .then((result) => {
-      sucessOrError(result, onSuccess, onError);
-    }).catch((e) => {
-      onError();
-    });
-};
+const post = (url, payload, token = '') => fetch(url,
+  {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(payload),
+  }).then((result) => result.json());
 
 export { get, post };

@@ -11,7 +11,11 @@ import {
   faCalendarCheck,
   faTimes,
   faPlus,
+  faComment,
+  faUser,
 } from '@fortawesome/free-solid-svg-icons';
+
+import { faTelegramPlane } from '@fortawesome/free-brands-svg-icons';
 
 library.add(
   faBell,
@@ -25,4 +29,7 @@ library.add(
   faCalendarCheck,
   faTimes,
   faPlus,
+  faComment,
+  faTelegramPlane,
+  faUser,
 );

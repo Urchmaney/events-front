@@ -4,8 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../styles/style.scss';
 
 const Header = (props) => {
-  const { fontType, title, notifyIcon, onClick } = props;
-  console.log(onClick);
+  const {
+    fontType, title, notifyIcon, onClick,
+  } = props;
   return (
     <div className="header">
       <span className="icon-span-head" onClick={onClick} role="button" onKeyUp={onClick} tabIndex={0}>

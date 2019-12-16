@@ -43,8 +43,16 @@ class Login extends React.Component {
   }
 
   handleSubmit() {
+    const { onSuccessLogin, onErrorLogin } = this;
     const payload = { auth: { ...this.state } };
-    post(loginUrl, payload, this.onSuccessLogin, this.onErrorLogin);
+    const postResult = post(loginUrl, payload);
+    postResult.then((result) => {
+      if (result.error) {
+        onErrorLogin(result.error);
+      } else {
+        onSuccessLogin(result.token);
+      }
+    });
   }
 
   resetState() {

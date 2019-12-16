@@ -33,9 +33,9 @@ const HomeTimeDisplay = (props) => {
 };
 
 HomeTimeDisplay.propTypes = {
-  days: PropTypes.string.isRequired,
-  hr: PropTypes.string.isRequired,
-  minutes: PropTypes.string.isRequired,
+  days: PropTypes.number.isRequired,
+  hr: PropTypes.number.isRequired,
+  minutes: PropTypes.number.isRequired,
 };
 
 export default HomeTimeDisplay;

@@ -49,7 +49,16 @@ class Register extends React.Component {
   }
 
   handleSubmit() {
-    post(registerUrl, this.state, this.onSuccessRegistration, this.onErrorRegistration);
+    const { onSuccessRegistration, onErrorRegistration } = this;
+    const postResult = post(registerUrl, this.state,
+      onSuccessRegistration, onErrorRegistration);
+    postResult.then((result) => {
+      if (result.error) {
+        onErrorRegistration(result.error);
+      } else {
+        onSuccessRegistration(result.token);
+      }
+    });
   }
 
   handleChange(event) {
