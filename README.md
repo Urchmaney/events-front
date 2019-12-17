@@ -1,3 +1,23 @@
+
+# Event Front
+A project help users search for events they are interseted in and give details abouts the events.
+Users can also see and comment on events and show interset in events.
+The project was built using react as the front end technology making api calls to a [ruby on rails application](https://event-first.herokuapp.com).
+
+# Technologies Used:
+- React
+- Redux
+- React-Redux
+- Font Awesome
+
+## Authors
+- Kingsley Uche [https://github.com/Urchmaney] <br>
+
+## Credit
+- Awesome Design Idea by [Ibrahim Shaqura on Behance](https://www.behance.net/ibshaqura)
+
+# [Live Link](https://event-first-mobile.herokuapp.com/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
