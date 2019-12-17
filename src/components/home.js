@@ -12,7 +12,7 @@ import {
 } from '../constants';
 import { get } from '../services/call';
 import objectIsEmpty from '../services/objectCheck';
-import { changeEvent } from '../actions/index';
+import { changeEvent, logout } from '../actions/index';
 import '../styles/style.scss';
 
 const getDayDiff = milliSec => milliSec / daysInMillSec;
@@ -38,6 +38,7 @@ class Home extends React.Component {
     };
     this.showMenu = this.showMenu.bind(this);
     this.HideMenu = this.HideMenu.bind(this);
+    this.onLogout = this.onLogout.bind(this);
   }
 
   componentDidMount() {
@@ -45,11 +46,17 @@ class Home extends React.Component {
     if (objectIsEmpty(event)) {
       const getResult = get(allEventUrl, token);
       getResult.then((result) => {
-        if (!result.error) {
+        if (!result.error && result.length > 0) {
           setEvent(result[0]);
         }
       });
     }
+  }
+
+  onLogout() {
+    const { logout, history } = this.props;
+    logout();
+    history.push('/login');
   }
 
   returnHome() {
@@ -72,14 +79,15 @@ class Home extends React.Component {
   }
 
   render() {
-    const { isLoggedIn, event, history } = this.props;
+    const {
+      isLoggedIn, event, history, isAdmin,
+    } = this.props;
     const { menuOn, shift } = this.state;
     const {
-      HideMenu, showMenu,
+      HideMenu, showMenu, onLogout,
     } = this;
-
     const { days, hours, minutes } = getDateDiffComponents(
-      objectIsEmpty(event) ? null : new Date(event.created_at),
+      objectIsEmpty(event) ? null : new Date(event.start),
     );
     const shiftStyle = {
       left: shift,
@@ -89,7 +97,13 @@ class Home extends React.Component {
     }
     return (
       <div className="container">
-        <HomeMenu onClick={HideMenu} show={menuOn} history={history} />
+        <HomeMenu
+          onClick={HideMenu}
+          show={menuOn}
+          history={history}
+          logout={onLogout}
+          isAdmin={isAdmin}
+        />
         <div className="content-main" style={shiftStyle}>
           <Header fontType="bars" title="Home" onClick={showMenu} notifyIcon />
           <HomeTimeDisplay
@@ -108,10 +122,12 @@ const mapStateToProps = state => ({
   isLoggedIn: state.loggedIn,
   token: state.token,
   event: state.event,
+  isAdmin: state.isAdmin,
 });
 
 const mapDispatchToProps = dispatch => ({
   setEvent: (event) => { dispatch(changeEvent(event)); },
+  logout: () => { dispatch(logout()); },
 });
 
 Home.propTypes = {
@@ -120,6 +136,8 @@ Home.propTypes = {
   event: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   setEvent: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
+  isAdmin: PropTypes.bool.isRequired,
 };
 
 

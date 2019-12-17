@@ -42,7 +42,8 @@ class Register extends React.Component {
       errors: [],
       email: '',
       username: '',
-      names: '',
+      firstname: '',
+      lastname: '',
       password: '',
       password_confirmation: '',
     });
@@ -70,7 +71,9 @@ class Register extends React.Component {
 
   render() {
     const { handleChange, handleSubmit } = this;
-    const { errors } = this.state;
+    const {
+      errors, email, lastname, firstname, password, username,
+    } = this.state;
     return (
       <div className="auth">
         <div className="auth-image" />
@@ -80,19 +83,23 @@ class Register extends React.Component {
             {errors.map(error => (<li key={error}>{error}</li>))}
           </ul>
           <div className="input-container">
-            <input name="email" type="text" onChange={handleChange} required />
+            <input name="email" value={email} type="text" onChange={handleChange} required />
             <span>Email</span>
           </div>
           <div className="input-container">
-            <input name="username" type="text" onChange={handleChange} required />
+            <input name="username" value={username} type="text" onChange={handleChange} required />
             <span>Username</span>
           </div>
           <div className="input-container">
-            <input name="names" type="text" onChange={handleChange} required />
-            <span>First and Last Name</span>
+            <input name="firstname" type="text" value={firstname} onChange={handleChange} required />
+            <span>First Name</span>
           </div>
           <div className="input-container">
-            <input name="password" type="password" onChange={handleChange} required />
+            <input name="lastname" type="text" value={lastname} onChange={handleChange} required />
+            <span>Last Name</span>
+          </div>
+          <div className="input-container">
+            <input name="password" type="password" value={password} onChange={handleChange} required />
             <span>Password</span>
           </div>
           <div className="input-container">
@@ -101,7 +108,7 @@ class Register extends React.Component {
           </div>
           <button type="button" onClick={handleSubmit}> Sign Up </button>
         </div>
-        <a href="/register"> Login </a>
+        <a href="/login"> Login </a>
       </div>
     );
   }

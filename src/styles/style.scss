@@ -5,6 +5,9 @@
   font-family: montserrat;
 }
 
+input {
+  background-color: #f8f8ff;
+}
 .header{
   height: 50px;
   padding: 10px;
@@ -213,8 +216,7 @@
       }
     }
   }
-  .comments-container{
-  }
+
   .form{
     padding:10px;
     padding-left: 30px;
@@ -475,6 +477,109 @@
   } 
 }
 
+.input-container{
+  position: relative;
+  input{
+    width: 100%;
+    border: none;
+    background-color: #f8f8ff;
+    border-radius: 4px;
+    height: 50px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #59499e;
+    &:focus ~ span ,
+    &:not(:focus):valid ~ span{
+      top: 3px;
+      left: 10px;
+      font-size: 11px;
+      opacity: 0.7;
+    }
+  }
+  span{
+    position: absolute;
+    pointer-events: none;
+    left: 15px;
+    top: 10px;
+    font-size: 18px;
+    opacity: 0.5;
+    transition: 0.2s ease all;
+  }
+}
 
-
-
+.create-event{
+  padding: 10px;
+  textArea{
+    height: 150px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+  }
+  label{
+    padding-left: 10px;
+    font-weight: bold;
+  }
+  .organizers-form{
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    .organizer-title{
+      font-weight: bold;
+      color: #59499e;
+    }
+    .organizer-unit{
+      width: 70%;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      border-top: 1px solid #f8f8ff;
+      padding: 10px;
+      p{
+        padding: 5px;
+      }
+      span{
+        font-weight: bold;
+        color: #59499e;
+        display: inline-block;
+        margin-right: 15px;
+      }
+    }
+    
+  }
+  .addButton{
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    width: 60px;
+    float: right;
+    border-radius: 30px;
+    background-color: lightgreen;
+    color: white;
+    font-size: 20px;
+  }
+  .organizer-form-container{
+    overflow: auto;
+  }
+  .submitButton{
+    button{
+      border:none;
+      width: 85%;
+      height : 50px;
+      border-radius: 5px;
+      background-color: #5cba47;
+      color: white;
+      font-weight: bold;
+      font-size: 15px;
+    }
+    margin-top: 20px;
+    text-align: center;
+  }
+}

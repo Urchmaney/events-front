@@ -1,12 +1,13 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { get, post } from '../services/call';
 import Header from './header';
 import Organizers from './organizer';
-import { organizersUrl, myEventUrl } from '../constants';
+import { organizersUrl, myEventUrl, interestUrl } from '../constants';
 
 const isEventPresent = (events, event) => events.some(e => e.id === event.id);
 
@@ -42,7 +43,7 @@ class EventDescription extends React.Component {
 
   handleAddEvent() {
     const { event, token } = this.props;
-    const postResult = post(myEventUrl, { id: event.id }, token);
+    const postResult = post(interestUrl, { id: event.id }, token);
     postResult.then((result) => {
       if (!result.error) {
         this.setState(state => ({ organizers: state.organizers, events: result }));
@@ -52,7 +53,7 @@ class EventDescription extends React.Component {
 
   render() {
     const { organizers, events } = this.state;
-    const { history, event } = this.props;
+    const { history, event, isLoggedIn } = this.props;
     const { returnHome, handleAddEvent } = this;
     let addComp = '';
     if (isEventPresent(events, event)) {
@@ -74,6 +75,9 @@ class EventDescription extends React.Component {
         </div>
       );
     }
+    if (!isLoggedIn) {
+      return (<Redirect to="/login" />);
+    }
     return (
       <div className="event-desc">
         <Header fontType="arrow-left" title="Description" onClick={returnHome} />
@@ -88,7 +92,7 @@ class EventDescription extends React.Component {
                 Date & Time
                 </p>
                 <p className="date-time">
-                  {new Date(event.created_at).toString().split(' ', 4).join(' ')}
+                  {new Date(event.start).toString().split(' ', 4).join(' ')}
                 </p>
               </div>
             </div>
@@ -149,12 +153,14 @@ class EventDescription extends React.Component {
 const mapStateToProps = state => ({
   event: state.event,
   token: state.token,
+  isLoggedIn: state.loggedIn,
 });
 
 EventDescription.propTypes = {
   history: PropTypes.object.isRequired,
   event: PropTypes.object.isRequired,
-  token: PropTypes.object.isRequired,
+  token: PropTypes.string.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps)(EventDescription);

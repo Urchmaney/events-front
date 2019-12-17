@@ -1,6 +1,7 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { get } from '../services/call';
 import { attendeeUrl } from '../constants';
@@ -37,6 +38,10 @@ class Attendees extends React.Component {
   render() {
     const { attendees } = this.state;
     const { returnHome } = this;
+    const { isLoggedIn } = this.props;
+    if (!isLoggedIn) {
+      return (<Redirect to="/login" />);
+    }
     return (
       <div>
         <Header fontType="arrow-left" title="Attendees" onClick={returnHome} />
@@ -54,12 +59,14 @@ class Attendees extends React.Component {
 const mapStateToProps = state => ({
   event: state.event,
   token: state.token,
+  isLoggedIn: state.loggedIn,
 });
 
 Attendees.propTypes = {
   event: PropTypes.object.isRequired,
   token: PropTypes.string.isRequired,
   history: PropTypes.object.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps)(Attendees);

@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { login, addToken } from '../actions/index';
+import { login, addToken, setAdmin } from '../actions/index';
 import { loginUrl } from '../constants';
 import { post } from '../services/call';
 import '../styles/style.scss';
@@ -21,10 +21,15 @@ class Login extends React.Component {
     this.onErrorLogin = this.onErrorLogin.bind(this);
   }
 
-  onSuccessLogin(token) {
-    const { login, addToken, history } = this.props;
+  onSuccessLogin(result) {
+    const {
+      login, addToken, history, setAdmin,
+    } = this.props;
     login();
-    addToken(token);
+    addToken(result.token);
+    if (result.is_admin) {
+      setAdmin();
+    }
     this.resetState();
     history.push('/');
   }
@@ -50,7 +55,7 @@ class Login extends React.Component {
       if (result.error) {
         onErrorLogin(result.error);
       } else {
-        onSuccessLogin(result.token);
+        onSuccessLogin(result);
       }
     });
   }
@@ -93,6 +98,7 @@ class Login extends React.Component {
 
 const mapDispatchToProps = dispatch => ({
   login: () => dispatch(login()),
+  setAdmin: () => dispatch(setAdmin()),
   addToken: token => dispatch(addToken(token)),
 });
 
@@ -100,6 +106,7 @@ Login.propTypes = {
   login: PropTypes.func.isRequired,
   addToken: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
+  setAdmin: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(Login);

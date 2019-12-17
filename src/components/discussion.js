@@ -1,6 +1,7 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from './header';
@@ -60,9 +61,12 @@ class Discussion extends React.Component {
   }
 
   render() {
-    const { event } = this.props;
+    const { event, isLoggedIn } = this.props;
     const { comments, comment } = this.state;
     const { returnHome, HandleOnChange, HandleSubmit } = this;
+    if (!isLoggedIn) {
+      return (<Redirect to="/login" />);
+    }
     return (
       <div className="dis">
         <Header fontType="arrow-left" title="Discussion" onClick={returnHome} />
@@ -103,12 +107,14 @@ class Discussion extends React.Component {
 const mapStateToProps = state => ({
   event: state.event,
   token: state.token,
+  isLoggedIn: state.loggedIn,
 });
 
 Discussion.propTypes = {
   event: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
-  token: PropTypes.object.isRequired,
+  token: PropTypes.string.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps)(Discussion);

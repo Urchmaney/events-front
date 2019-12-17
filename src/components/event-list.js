@@ -1,6 +1,7 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Event from './event';
 import Header from './header';
@@ -39,7 +40,10 @@ class EventList extends React.Component {
   render() {
     const { events } = this.state;
     const { returnHome } = this;
-    const { changeEvent } = this.props;
+    const { changeEvent, isLoggedIn } = this.props;
+    if (!isLoggedIn) {
+      return (<Redirect to="/login" />);
+    }
     return (
       <div className="container">
         <Header fontType="arrow-left" title="Events" onClick={returnHome} />
@@ -62,6 +66,7 @@ class EventList extends React.Component {
 
 const mapStateToProps = state => ({
   token: state.token,
+  isLoggedIn: state.loggedIn,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -72,6 +77,7 @@ EventList.propTypes = {
   token: PropTypes.string.isRequired,
   history: PropTypes.object.isRequired,
   changeEvent: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventList);

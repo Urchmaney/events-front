@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const HomeMenu = (props) => {
-  const { show, history, onClick } = props;
+  const {
+    show, history, onClick, logout, isAdmin
+  } = props;
   const style = { display: show ? 'block' : 'none' };
   return (
     <div className="menu-container" style={style}>
@@ -13,7 +15,7 @@ const HomeMenu = (props) => {
           <FontAwesomeIcon icon="times" />
         </span>
       </p>
-      <p className="menu-row">
+      <p className="menu-row" onClick={() => { history.push('/'); }} onKeyDown={() => {}} role="presentation">
         <span><FontAwesomeIcon icon="home" /></span>
       Home
       </p>
@@ -37,6 +39,18 @@ const HomeMenu = (props) => {
         <span><FontAwesomeIcon icon="calendar-check" /></span>
        Events
       </p>
+      {
+        isAdmin && (
+        <p className="menu-row" onClick={() => { history.push('/event/create'); }} onKeyDown={() => {}} role="presentation">
+          <span><FontAwesomeIcon icon="calendar-check" /></span>
+       Create Events
+        </p>
+        )
+      }
+      <p className="menu-row" onClick={logout} onKeyDown={() => {}} role="presentation">
+        <span><FontAwesomeIcon icon="calendar-check" /></span>
+       Log Out
+      </p>
     </div>
   );
 };
@@ -44,7 +58,9 @@ const HomeMenu = (props) => {
 HomeMenu.propTypes = {
   show: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
+  isAdmin: PropTypes.bool.isRequired,
 };
 
 export default HomeMenu;
