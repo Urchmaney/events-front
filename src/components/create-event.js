@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -171,12 +170,12 @@ class CreateEvent extends React.Component {
               <textArea name="description" placeHolder="Description" value={description} type="text" onChange={handleChange} required />
             </div>
             <div className="input-container">
-              <label htmlFor="start">start</label>
+              <p className="label">start</p>
               <input name="start" id="start" type="date" value={start} onChange={handleChange} required />
             </div>
             <div className="input-container">
-              <label>end</label>
-              <input name="end" type="date" value={end} onChange={handleChange} required />
+              <p className="label">end</p>
+              <input name="end" id="start" type="date" value={end} onChange={handleChange} required />
             </div>
             <div className="organizers-form">
               <p className="organizer-title">
