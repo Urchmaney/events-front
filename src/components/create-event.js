@@ -142,7 +142,6 @@ class CreateEvent extends React.Component {
         </p>
       </div>
     );
-    console.log(this.state);
     if (!isLoggedIn) {
       return (<Redirect to="/login" />);
     }
