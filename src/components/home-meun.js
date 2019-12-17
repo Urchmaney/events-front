@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const HomeMenu = (props) => {
   const {
-    show, history, onClick, logout, isAdmin
+    show, history, onClick, logout, isAdmin,
   } = props;
   const style = { display: show ? 'block' : 'none' };
   return (

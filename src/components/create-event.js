@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -36,14 +37,14 @@ class CreateEvent extends React.Component {
 
   handleChange(event) {
     const { name, value } = event.target;
-    this.setState((state) => ({
+    this.setState(state => ({
       ...state, [name]: value,
     }));
   }
 
   handleOrganizerChange(event) {
     const { name, value } = event.target;
-    this.setState((state) => ({
+    this.setState(state => ({
       ...state,
       tempOrganizer: { ...state.tempOrganizer, [name]: value },
     }));
@@ -73,19 +74,19 @@ class CreateEvent extends React.Component {
     const { resetState } = this;
     const { organizers } = this.state;
     const payload = { ...this.state, organizers_attributes: organizers };
-    ['tempOrganizer', 'organizers', 'result', 'success', 'error'].forEach((e) => delete payload[e]);
+    ['tempOrganizer', 'organizers', 'result', 'success', 'error'].forEach(e => delete payload[e]);
     delete payload.tempOrganizer;
     delete payload.result;
     const postResult = post(myEventUrl, { event: payload }, token);
     postResult.then((result) => {
       if (!result.error) {
         resetState();
-        this.setState((state) => ({
+        this.setState(state => ({
           ...state, result: 'Successfully added event',
         }));
         setTimeout(() => resetState(), 3000);
       } else {
-        this.setState((state) => ({
+        this.setState(state => ({
           ...state, errors: result.error,
         }));
       }
@@ -154,7 +155,7 @@ class CreateEvent extends React.Component {
           </div>
           <div>
             {
-            errors.map((e) => (<p key={e}>{e}</p>))
+            errors.map(e => (<p key={e}>{e}</p>))
           }
           </div>
           <form>
@@ -182,7 +183,7 @@ class CreateEvent extends React.Component {
                 Organizers
               </p>
               {
-              organizers.map((org) => (
+              organizers.map(org => (
                 orgDiv(org.name, org.role, org.occupation)
               ))
             }
@@ -215,7 +216,7 @@ class CreateEvent extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   token: state.token,
   isLoggedIn: state.loggedIn,
 });

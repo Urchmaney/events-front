@@ -1,5 +1,5 @@
 import {
-  LOGIN, LOGOUT, ADD_TOKEN, CHANGE_EVENT, SET_ADMIN
+  LOGIN, LOGOUT, ADD_TOKEN, CHANGE_EVENT, SET_ADMIN,
 } from '../constants';
 
 const login = () => (
