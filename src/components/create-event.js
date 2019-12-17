@@ -81,9 +81,9 @@ class CreateEvent extends React.Component {
       if (!result.error) {
         resetState();
         this.setState(state => ({
-          ...state, result: 'Successfully added event',
+          ...state, success: 'Successfully added event',
         }));
-        setTimeout(() => resetState(), 3000);
+        setTimeout(() => { resetState(); }, 3000);
       } else {
         this.setState(state => ({
           ...state, errors: result.error,
@@ -94,7 +94,8 @@ class CreateEvent extends React.Component {
 
   resetState() {
     this.setState({
-      result: '',
+      success: '',
+      errors: [],
       title: '',
       description: '',
       start: '',
@@ -141,6 +142,7 @@ class CreateEvent extends React.Component {
         </p>
       </div>
     );
+    console.log(this.state);
     if (!isLoggedIn) {
       return (<Redirect to="/login" />);
     }
@@ -148,10 +150,13 @@ class CreateEvent extends React.Component {
       <div>
         <Header fontType="arrow-left" title="Create Event" onClick={returnHome} />
         <div className="create-event">
-
-          <div>
-            {success}
-          </div>
+          {
+           (success !== '') && (
+           <div className="successMsg">
+             {success}
+           </div>
+           )
+        }
           <div>
             {
             errors.map(e => (<p key={e}>{e}</p>))
@@ -167,7 +172,7 @@ class CreateEvent extends React.Component {
               <span>location</span>
             </div>
             <div className="input-container">
-              <textArea name="description" placeHolder="Description" value={description} type="text" onChange={handleChange} required />
+              <textarea name="description" placeholder="Description" value={description} type="text" onChange={handleChange} required />
             </div>
             <div className="input-container">
               <p className="label">start</p>
@@ -222,7 +227,7 @@ const mapStateToProps = state => ({
 
 CreateEvent.propTypes = {
   history: PropTypes.object.isRequired,
-  token: PropTypes.object.isRequired,
+  token: PropTypes.string.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
 };
 

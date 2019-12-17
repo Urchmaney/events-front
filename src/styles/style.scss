@@ -259,6 +259,9 @@ input {
   background-color: #fff;
   border-radius: 4px;
   margin-bottom: 10px;
+  &:hover{
+    cursor: pointer;
+  }
   p{
     padding-top: 10px;
   }
@@ -582,4 +585,22 @@ input {
     margin-top: 20px;
     text-align: center;
   }
+}
+
+.successMsg{
+  width: 70%;
+  margin:auto;
+  text-align: center;
+  font-size: 20px;
+  height: 60px;
+  background-color: #5cba47;
+  border-radius: 6px;
+  color: white;
+}
+
+.t-title{
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 5px;
 }

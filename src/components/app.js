@@ -12,6 +12,7 @@ import EventList from './event-list';
 import Discussion from './discussion';
 import Attendees from './attendees';
 import CreateEvent from './create-event';
+import MyEvents from './my-events';
 import '../fontawesome';
 import '../styles/style.scss';
 
@@ -26,6 +27,7 @@ const App = () => (
       <Route path="/event/discussion" component={Discussion} />
       <Route path="/event/attendees" component={Attendees} />
       <Route path="/event/create" component={CreateEvent} />
+      <Route path="/my/events/" component={MyEvents} />
     </Switch>
   </Router>
 );

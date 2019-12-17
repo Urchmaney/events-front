@@ -110,8 +110,9 @@ class Home extends React.Component {
             days={Number(days)}
             hr={Number(hours)}
             minutes={Number(minutes)}
+            title={event.title}
           />
-          <EventFeatureList />
+          <EventFeatureList history={history} />
         </div>
       </div>
     );

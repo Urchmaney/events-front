@@ -39,6 +39,10 @@ const HomeMenu = (props) => {
         <span><FontAwesomeIcon icon="calendar-check" /></span>
        Events
       </p>
+      <p className="menu-row" onClick={() => { history.push('/my/events/'); }} onKeyDown={() => {}} role="presentation">
+        <span><FontAwesomeIcon icon="calendar-check" /></span>
+       My Events
+      </p>
       {
         isAdmin && (
         <p className="menu-row" onClick={() => { history.push('/event/create'); }} onKeyDown={() => {}} role="presentation">
